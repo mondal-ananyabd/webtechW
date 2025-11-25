@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Admission Form</title>
+</head>
+<body>
+    <h1>University Admission Form</h1>
+
+    <form>
+        
+        <fieldset>
+            <legend>Personal Information</legend>
+
+            <label for="firstname">First Name:</label><br>
+            <input type="text" id="firstname" name="firstname" required maxlength="30"><br><br>
+
+            <label for="lastname">Last Name:</label><br>
+            <input type="text" id="lastname" name="lastname" required maxlength="30"><br><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label>Gender:</label><br>
+            <input type="radio" id="male" name="gender" value="Male" required>
+            <label for="male">Male</label><br>
+            <input type="radio" id="female" name="gender" value="Female">
+            <label for="female">Female</label><br>
+            <input type="radio" id="other" name="gender" value="Other">
+            <label for="other">Other</label><br><br>
+
+            <label for="dob">Date of Birth:</label><br>
+            <input type="date" id="dob" name="dob" required><br><br>
+        </fieldset>
+
+        
+        <fieldset>
+            <legend>Academic Background</legend>
+
+            <label for="ssc">SSC Result:</label><br>
+            <input type="text" id="ssc" name="ssc" maxlength="5" required><br><br>
+
+            <label for="hsc">HSC Result:</label><br>
+            <input type="text" id="hsc" name="hsc" maxlength="5" required><br><br>
+
+            <label for="interests">Interests:</label><br>
+            <input type="checkbox" id="coding" name="interests" value="Coding">
+            <label for="coding">Coding</label><br>
+
+            <input type="checkbox" id="sports" name="interests" value="Sports">
+            <label for="sports">Sports</label><br>
+
+            <input type="checkbox" id="music" name="interests" value="Music">
+            <label for="music">Music</label><br><br>
+        </fieldset>
+
+        
+        <fieldset>
+            <legend>Preferred Department</legend>
+
+            <label for="department">Choose Department:</label><br>
+            <select id="department" name="department" required>
+                <option value="">-- Select --</option>
+                <option value="CSE">Computer Science and Engineering</option>
+                <option value="EEE">Electrical and Electronic Engineering</option>
+                <option value="BBA">Business Administration</option>
+                <option value="ENG">English</option>
+            </select><br><br>
+        </fieldset>
+
+        
+        <fieldset>
+            <legend>Upload Documents</legend>
+
+            <label for="photo">Upload Photo:</label><br>
+            <input type="file" id="photo" name="photo" required><br><br>
+
+            <label for="transcript">Upload Transcript:</label><br>
+            <input type="file" id="transcript" name="transcript" required><br><br>
+        </fieldset>
+
+        
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+</body>
+</html>
