@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Portfolio</title>
+
+    <style>
+        /* ---------- BASE STYLES ---------- */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            transition: 0.3s;
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #e3e3e3;
+            padding: 10px;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #007bff;
+        }
+
+        .container {
+            padding: 25px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        /* ---------- CONTACT FORM ---------- */
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 12px;
+            border-radius: 5px;
+            border: 1px solid #aaa;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #007bff;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        /* ---------- THEME: DARK MODE ---------- */
+        .dark {
+            background: #222;
+            color: white;
+        }
+
+        .dark nav {
+            background: #333;
+        }
+
+        .dark nav a {
+            color: white;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            right: 20px;
+            top: 18px;
+            cursor: pointer;
+            font-weight: bold;
+            color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <h1>My Portfolio</h1>
+        <span id="greeting"></span>
+        <span class="theme-toggle" onclick="toggleTheme()">🌙</span>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <a onclick="showSection('about')">About</a>
+        <a onclick="showSection('projects')">Projects</a>
+        <a onclick="showSection('contact')">Contact</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="section active">
+            <h2>About Me</h2>
+            <p>Welcome to my interactive portfolio! This site is designed to showcase modern JavaScript features and web interactivity.</p>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects" class="section">
+            <h2>Projects</h2>
+            <p>Here are some of my recent works:</p>
+            <ul>
+                <li>Web Design Landing Page</li>
+                <li>JavaScript Calculator</li>
+                <li>Dynamic To-Do App</li>
+            </ul>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="section">
+            <h2>Contact Me</h2>
+
+            <label>Name</label>
+            <input type="text" id="name">
+            <div id="nameError" class="error"></div>
+
+            <label>Email</label>
+            <input type="text" id="email">
+            <div id="emailError" class="error"></div>
+
+            <label>Message</label>
+            <textarea id="message" rows="4"></textarea>
+            <div id="messageError" class="error"></div>
+
+            <button onclick="validateForm()">Send Message</button>
+            <div id="successMsg" style="color:green; margin-top:10px;"></div>
+        </section>
+
+    </div>
+
+    <script>
+        /* ---------- THEME SWITCHER ---------- */
+        function toggleTheme() {
+            document.body.classList.toggle("dark");
+
+            // Switch icon
+            let t = document.querySelector(".theme-toggle");
+            t.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+        }
+
+        /* ---------- LIVE TIME-BASED GREETING ---------- */
+        function updateGreeting() {
+            let hour = new Date().getHours();
+            let greetingText = "";
+
+            if (hour < 12) greetingText = "Good Morning ☀️";
+            else if (hour < 18) greetingText = "Good Afternoon 🌤️";
+            else greetingText = "Good Evening 🌙";
+
+            document.getElementById("greeting").textContent = greetingText;
+        }
+        updateGreeting();
+
+        /* ---------- SECTION TOGGLING ---------- */
+        function showSection(id) {
+            let sections = document.getElementsByClassName("section");
+
+            // Hide all sections
+            for (let s of sections) {
+                s.classList.remove("active");
+            }
+
+            // Show selected
+            document.getElementById(id).classList.add("active");
+        }
+
+        /* ---------- CONTACT FORM VALIDATION ---------- */
+        function validateForm() {
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let message = document.getElementById("message").value.trim();
+
+            let valid = true;
+
+            // Reset messages
+            document.getElementById("nameError").textContent = "";
+            document.getElementById("emailError").textContent = "";
+            document.getElementById("messageError").textContent = "";
+            document.getElementById("successMsg").textContent = "";
+
+            // Name validation
+            if (name === "") {
+                document.getElementById("nameError").textContent = "Name cannot be empty.";
+                valid = false;
+            }
+
+            // Email validation (simple regex)
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.match(emailPattern)) {
+                document.getElementById("emailError").textContent = "Enter a valid email.";
+                valid = false;
+            }
+
+            // Message validation
+            if (message.length < 10) {
+                document.getElementById("messageError").textContent = "Message must be at least 10 characters.";
+                valid = false;
+            }
+
+            if (valid) {
+                document.getElementById("successMsg").textContent = "Message sent successfully!";
+            }
+        }
+    </script>
+
+</body>
+</html>

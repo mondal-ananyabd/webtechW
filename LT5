@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analyzer</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            height: 180px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+            display: none;
+        }
+
+        .item {
+            margin-bottom: 10px;
+            font-size: 17px;
+        }
+
+        .rev-box {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Text Analyzer Tool</h2>
+
+    <textarea id="inputText" placeholder="Type or paste your text here..."></textarea>
+
+    <button onclick="analyzeText()">Analyze Text</button>
+
+    <div id="result">
+        <div class="item"><strong>Total Characters:</strong> <span id="charCount"></span></div>
+        <div class="item"><strong>Total Words:</strong> <span id="wordCount"></span></div>
+        <div class="item"><strong>Reversed Text:</strong></div>
+        <div class="rev-box" id="reverseText"></div>
+    </div>
+
+    <script>
+        function analyzeText() {
+            let text = document.getElementById("inputText").value.trim();
+
+            // Handle empty input
+            if (text === "") {
+                alert("Please enter some text.");
+                return;
+            }
+
+            // Character count
+            let characters = text.length;
+
+            // Word count (ignore empty strings from multiple spaces)
+            let words = text.split(/\s+/).filter(word => word !== "").length;
+
+            // Reverse text using split -> reverse -> join
+            let reversed = text.split("").reverse().join("");
+
+            // Display results
+            document.getElementById("charCount").innerText = characters;
+            document.getElementById("wordCount").innerText = words;
+            document.getElementById("reverseText").innerText = reversed;
+
+            document.getElementById("result").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            padding: 40px;
+        }
+
+        .container {
+            width: 700px;
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            width: 30%;
+            margin-right: 10px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        #addBtn {
+            padding: 10px 20px;
+            background: #2874A6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #addBtn:hover {
+            background: #1A5276;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #aaa;
+            text-align: center;
+        }
+
+        th {
+            background: #ddd;
+        }
+
+        .deleteBtn {
+            padding: 7px 15px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .deleteBtn:hover {
+            background: darkred;
+        }
+
+        #error {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Student Management System</h2>
+
+    <!-- Input Fields -->
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="text" id="roll" placeholder="Enter Roll">
+    <input type="text" id="dept" placeholder="Enter Department">
+
+    <button id="addBtn">Add Student</button>
+    <p id="error"></p>
+
+    <!-- Student Table -->
+    <table id="studentTable">
+        <tr>
+            <th>Name</th>
+            <th>Roll</th>
+            <th>Department</th>
+            <th>Action</th>
+        </tr>
+    </table>
+
+</div>
+
+<script>
+    const addBtn = document.getElementById("addBtn");
+    const table = document.getElementById("studentTable");
+    const errorMsg = document.getElementById("error");
+
+    addBtn.addEventListener("click", function() {
+        const name = document.getElementById("name").value.trim();
+        const roll = document.getElementById("roll").value.trim();
+        const dept = document.getElementById("dept").value.trim();
+
+        // Clear previous error
+        errorMsg.innerText = "";
+
+        // Validation
+        if (name === "" || roll === "" || dept === "") {
+            errorMsg.innerText = "All fields are required!";
+            return;
+        }
+
+        // Create row
+        const row = document.createElement("tr");
+
+        // Create cells
+        row.innerHTML = `
+            <td>${name}</td>
+            <td>${roll}</td>
+            <td>${dept}</td>
+            <td>
+                <button class="deleteBtn">Delete</button>
+            </td>
+        `;
+
+        // Add delete functionality
+        row.querySelector(".deleteBtn").addEventListener("click", function() {
+            row.remove();
+        });
+
+        // Append row to table
+        table.appendChild(row);
+
+        // Clear input fields
+        document.getElementById("name").value = "";
+        document.getElementById("roll").value = "";
+        document.getElementById("dept").value = "";
+    });
+</script>
+
+</body>
+</html>

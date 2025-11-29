@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Manipulation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background: #f4f4f4;
+        }
+
+        #text {
+            font-size: 18px;
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            transition: 0.3s ease;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin-right: 10px;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #resetBtn {
+            background: #dc3545;
+        }
+
+        #resetBtn:hover {
+            background: #b02a37;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Dynamic Style Control Panel</h2>
+
+    <p id="text">
+        This is a sample paragraph. Use the buttons below to manipulate its style dynamically!
+    </p>
+
+    <button onclick="changeBackground()">Change Background Color</button>
+    <button onclick="increaseFont()">Increase Font Size</button>
+    <button onclick="centerText()">Center Text</button>
+    <button id="resetBtn" onclick="resetStyle()">Reset Style</button>
+
+    <script>
+        let currentFontSize = 18; // starting size
+
+        function changeBackground() {
+            // random color generator
+            const randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+            document.getElementById("text").style.backgroundColor = randomColor;
+        }
+
+        function increaseFont() {
+            currentFontSize += 2; // increase step-by-step
+            document.getElementById("text").style.fontSize = currentFontSize + "px";
+        }
+
+        function centerText() {
+            document.getElementById("text").style.textAlign = "center";
+        }
+
+        function resetStyle() {
+            currentFontSize = 18;
+            const p = document.getElementById("text");
+
+            p.style.fontSize = "18px";
+            p.style.backgroundColor = "white";
+            p.style.textAlign = "left";
+        }
+    </script>
+
+</body>
+</html>
