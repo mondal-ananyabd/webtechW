@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dark & Light Mode Toggle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: 0.3s;
+        }
+
+        header, footer {
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            padding: 40px;
+            text-align: center;
+        }
+
+        #toggleBtn {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #2874A6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #toggleBtn:hover {
+            background: #1A5276;
+        }
+
+        /* Default Light Theme */
+        body.light {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        header.light, footer.light {
+            background: #f2f2f2;
+            color: #000000;
+        }
+
+        /* Dark Theme */
+        body.dark {
+            background-color: #1c1c1c;
+            color: #ffffff;
+        }
+        header.dark, footer.dark {
+            background: #333333;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="light">
+
+    <header id="header" class="light">
+        <h2>My Portfolio</h2>
+    </header>
+
+    <main id="content">
+        <button id="toggleBtn">Switch to Dark Mode</button>
+        <h3>Welcome to my portfolio website</h3>
+        <p>Click the button above to switch between Light and Dark Themes!</p>
+    </main>
+
+    <footer id="footer" class="light">
+        <p>© 2025 My Portfolio Website</p>
+    </footer>
+
+
+    <script>
+        let isDarkMode = false; // Current mode tracker
+
+        const toggleBtn = document.getElementById("toggleBtn");
+        const body = document.body;
+        const header = document.getElementById("header");
+        const footer = document.getElementById("footer");
+
+        toggleBtn.addEventListener("click", function () {
+
+            if (isDarkMode) {
+                // Switch to Light Mode
+                body.className = "light";
+                header.className = "light";
+                footer.className = "light";
+
+                toggleBtn.innerText = "Switch to Dark Mode";
+                isDarkMode = false;
+            } 
+            else {
+                // Switch to Dark Mode
+                body.className = "dark";
+                header.className = "dark";
+                footer.className = "dark";
+
+                toggleBtn.innerText = "Switch to Light Mode";
+                isDarkMode = true;
+            }
+        });
+    </script>
+
+</body>
+</html>
