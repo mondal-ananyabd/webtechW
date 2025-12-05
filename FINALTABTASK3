@@ -1,0 +1,49 @@
+<?php
+
+
+echo "<h3>For Loop (1 to 20, break after 5):</h3>";
+
+for ($i = 1; $i <= 20; $i++) {
+    echo $i . " ";
+
+    if ($i == 5) {
+        break; 
+    }
+}
+
+echo "<br><br>";
+
+
+
+echo "<h3>While Loop (Even Numbers 1 to 20):</h3>";
+
+$number = 1;
+
+while ($number <= 20) {
+    if ($number % 2 == 0) {
+        echo $number . " ";
+    }
+    $number++;
+}
+
+echo "<br><br>";
+
+
+echo "<h3>Fruits and Their Colors:</h3>";
+
+$fruits = [
+    "apple"  => "red",
+    "banana" => "yellow",
+    "grape"  => "purple",
+    "orange" => "orange",
+    "mango"  => "yellow"
+];
+
+
+
+
+foreach ($fruits as $fruit => $color) {
+    echo ucfirst($fruit) . " is " . $color . "<br>";
+}
+
+?>

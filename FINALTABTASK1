@@ -1,0 +1,42 @@
+<?php
+
+$name = "Ananya";         // String
+$age = 22;                // Integer
+$height = 5.4;            // Float
+$isStudent = true;        // Boolean
+
+
+$num1 = 10;
+$num2 = 4.5;
+
+$addition       = $num1 + $num2;
+$subtraction    = $num1 - $num2;
+$multiplication = $num1 * $num2;
+$division       = $num1 / $num2;
+
+echo "<h3>Arithmetic Operations:</h3>";
+echo "Addition: $addition <br>";
+echo "Subtraction: $subtraction <br>";
+echo "Multiplication: $multiplication <br>";
+echo "Division: $division <br><br>";
+
+
+$sum = $num1 + $num2;
+
+echo "Sum using echo: $sum <br>";
+print "Sum using print: $sum <br><br>";
+
+
+echo "<h3>Variable Details (var_dump):</h3>";
+var_dump($name);
+echo "<br>";
+
+var_dump($age);
+echo "<br>";
+
+var_dump($height);
+echo "<br>";
+
+var_dump($isStudent);
+echo "<br>";
+?>
